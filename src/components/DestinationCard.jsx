@@ -1,7 +1,26 @@
-export default function Destination({ imgSrc, name, price }) {
+import { useDispatch, useSelector } from "react-redux";
+import { setItem } from "../redux/tripDetailSlice";
+import { useEffect } from "react";
+
+export default function Destination({ imgSrc, id, name, price, data }) {
+  const dispatch = useDispatch();
+  const tripDetail = useSelector((state) => state.tripDetail);
+
+  const setTripDetail = () => {
+    dispatch(setItem({ data }));
+  };
+  useEffect(
+    () => localStorage.setItem("tripDetail", JSON.stringify(tripDetail)),
+    [tripDetail]
+  );
+
   return (
     <>
-      <a href={`/${name}`} className="block group cursor-pointer">
+      <a
+        href={`/${name}`}
+        onClick={() => setTripDetail()}
+        className="block group cursor-pointer"
+      >
         <div className="flex flex-col rounded-xl bg-slate-200 md:h-64 mr-2 shadow-lg shadow-slate-300/20 md:hover:scale-95 ease-in-out duration-500 ">
           <div>
             <p className="text-white text-lg fixed ml-4 mt-4 py-1 px-2 rounded-lg font-semibold bg-[#31C0F0] ">

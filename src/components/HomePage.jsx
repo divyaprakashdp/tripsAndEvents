@@ -17,7 +17,9 @@ export default function HomePage() {
         key={destination.name}
         imgSrc={destination.image}
         name={destination.name}
+        id={destination.id}
         price={destination.startingPrice}
+        data={destination}
       />
     ));
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-export default function Stepper({ label, count, incrementer, decrementer }) {
+export default function Stepper({ label }) {
   const [counter, setCounter] = useState(0);
   return (
     <div className="flex flex-row gap-2 items-center ">
