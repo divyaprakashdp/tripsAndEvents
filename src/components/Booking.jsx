@@ -84,7 +84,7 @@ export default function Booking() {
   };
 
   return (
-    <div className="pt-24 px-24 w-full items-center justify-center text-center">
+    <div className="h-screen pt-24 px-24 w-full items-center justify-center text-center">
       <h2 className="text-4xl font-bold text-blue-400 mt-12">
         Trip to {bookingData.name}
       </h2>

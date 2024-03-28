@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import Checkout from "./components/Checkout";
 import { Provider } from "react-redux";
 import { store } from "./redux/Store";
+import Gallery from "./components/Gallery";
 
 export const ProtectedRoutes = ({ children }) => {
   if (localStorage.getItem("user")) {
@@ -33,6 +34,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/signup" element={<Signup />} />
             <Route path="/:destination" element={<TripDetail />} />
             <Route path="/:destination/book" element={<Booking />} />
+            <Route path="/:destination/gallery" element={<Gallery />} />
 
             <Route
               path="/checkout"

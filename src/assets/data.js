@@ -21,8 +21,99 @@ const data = [
         },
         tag: "Weekend Trip",
         datesAvailable: ["March 18-20", "March 20-27", "March 29-30"],
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias enim id, voluptate repellat odio deserunt culpa sunt expedita, incidunt iure accusantium minus necessitatibus labore qui aliquid dolorem aspernatur doloribus possimus. Libero, sunt ipsam! Odio libero quo perferendis adipisci suscipit nam asperiores deserunt officia voluptates aperiam. Illo enim sint beatae soluta dolore ipsam consectetur, vero aspernatur repellat rerum, odio hic cumque minima modi ducimus, deleniti quisquam autem sequi quas illum laborum. Vitae quod expedita obcaecati facere. Eveniet debitis deserunt aliquam vero labore, laboriosam, sit commodi praesentium quibusdam fugit, in eius quis repellendus? Deserunt ea adipisci id ad ducimus aliquam velit fugiat harum ullam! Placeat error maxime vero modi iure aperiam, architecto est nihil voluptatem nulla reprehenderit culpa quaerat provident nam corporis, alias sint suscipit harum nisi minima asperiores blanditiis? Laborum omnis laboriosam blanditiis, quaerat voluptas deserunt a dolore quae facilis nam, quia ab sequi? Labore temporibus facere voluptatibus dolorum omnis libero quam, obcaecati quisquam soluta enim laudantium? Similique commodi odio quam non quia, saepe autem consectetur vel quaerat blanditiis molestiae laboriosam magnam doloremque temporibus praesentium deleniti odit vero. Quasi ex iure nisi id, voluptates dolorem nam molestiae temporibus laborum, accusamus dicta maiores harum blanditiis ducimus neque tempore unde a alias sequi?",
+        description: {
+          about:
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias enim id, voluptate repellat odio deserunt culpa sunt expedita, incidunt iure accusantium minus necessitatibus labore qui aliquid dolorem aspernatur doloribus possimus. Libero, sunt ipsam! Odio libero quo perferendis adipisci suscipit nam asperiores deserunt officia voluptates aperiam. Illo enim sint beatae soluta dolore ipsam consectetur, vero aspernatur repellat rerum, odio hic cumque minima modi ducimus, deleniti quisquam autem sequi quas illum laborum. Vitae quod expedita obcaecati facere. Eveniet debitis deserunt aliquam vero labore, laboriosam, sit commodi praesentium quibusdam fugit, in eius quis repellendus? Deserunt ea adipisci id ad ducimus aliquam velit fugiat harum ullam! Placeat error maxime vero modi iure aperiam, architecto est nihil voluptatem nulla reprehenderit culpa quaerat provident nam corporis, alias sint suscipit harum nisi minima asperiores blanditiis? Laborum omnis laboriosam blanditiis, quaerat voluptas deserunt a dolore quae facilis nam, quia ab sequi? Labore temporibus facere voluptatibus dolorum omnis libero quam, obcaecati quisquam soluta enim laudantium? Similique commodi odio quam non quia, saepe autem consectetur vel quaerat blanditiis molestiae laboriosam magnam doloremque temporibus praesentium deleniti odit vero. Quasi ex iure nisi id, voluptates dolorem nam molestiae temporibus laborum, accusamus dicta maiores harum blanditiis ducimus neque tempore unde a alias sequi?",
+          itenarary: [
+            {
+              topic: "Day 0: Okay Tadaa Byee Delhi!",
+
+              detailArray: [
+                "We will leave Delhi around 6 pm in a luxury tempo traveler/Volvo Bus/Car.",
+
+                "Refreshments like water bottles and eatables will be provided at the start of the journey.",
+
+                "Our first major stop will be for dinner.",
+
+                "Antakshri, Damsharas, Dancing sessions, and many interactive games throughout the journey.",
+              ],
+            },
+            {
+              topic: "Day 1: Reach Tirthan Valley",
+
+              detailArray: [
+                "We will wish each other by “Subahh Hogyii Yaar! Ab To Sojao xD, Kitni Der Mein Pahuchenge “ instead of Good morning.",
+
+                "Will reach Tirthan around 11 in the morning.",
+                "Check-in into camps/hotel and relax in the lap of nature for a while",
+                "Click riverside photos and then leave for Choiee waterfall.",
+                "Explore market and back to campsite",
+                "Come back to hotel and enjoy Bonfire and music",
+                "Dinner and overnight stay at hotel",
+              ],
+            },
+            {
+              topic: "Day 2: Reach Some Valley",
+
+              detailArray: [
+                "We will wish each other Good morning.",
+
+                "Will reach Some around 11:30 in the morning.",
+                "Check-in into camps/hotel and relax in the lap of nature for a while",
+                "Click riverside photos and then leave for Choiee waterfall.",
+                "Explore market and back to campsite",
+                "Come back to hotel and enjoy Bonfire and music",
+                "Dinner and overnight stay at hotel",
+              ],
+            },
+          ],
+          policy: [
+            {
+              topic: "Inclusions",
+
+              detailArray: [
+                "Travel by luxury tempo traveler/Volvo bus",
+
+                "Refreshments during the journey",
+                "Meals: 2 Breakfasts 2 Dinners",
+                "Accommodation ( Quad Basis )",
+                "Guides charges and all other permits",
+              ],
+            },
+            {
+              topic: "Exclusions",
+
+              detailArray: [
+                "Travel Insurance",
+                "Hard drinks and any other snacks",
+                "Expenses of personal nature",
+                "Anything not mentioned in inclusions",
+              ],
+            },
+            {
+              topic: "Cancellation Policy",
+
+              detailArray: [
+                "These are non-refundable amounts as per the current components attached. In the case of component change/modifications, the policy will change accordingly.",
+
+                "Please check the exact cancellation and date change policy on the review page before proceeding further.",
+
+                "Please note, TCS once collected cannot be refunded in case of any cancellation / modification. You can claim the TCS amount as adjustment against Income Tax payable at the time of filing the return of income.",
+
+                "Cancellation charges shown is exclusive of all taxes and taxes will be added as per applicable.",
+              ],
+            },
+            {
+              topic: "Package Date Change Policy",
+
+              detailArray: [
+                "These are non-refundable amounts as per the current components attached. In the case of component change/modifications, the policy will change accordingly.",
+
+                "Please check the exact cancellation and date change policy on the review page before proceeding further.",
+              ],
+            },
+          ],
+        },
       },
       {
         name: "Goa",

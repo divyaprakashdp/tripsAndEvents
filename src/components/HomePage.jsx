@@ -5,6 +5,7 @@ import WhyUs from "./WhyUs";
 import SocialLinks from "./SocialLinks";
 import Testimonials from "./Testimonials";
 import data from "../assets/data.js";
+import pastTripData from "../assets/pastTripData.js";
 import HeroCarousel from "./HeroCarousel.jsx";
 
 export default function HomePage() {
@@ -23,6 +24,21 @@ export default function HomePage() {
       />
     ));
 
+  const pastTripsCard = (list) =>
+    list.map((itemData) => (
+      <a key={itemData.name} href={`/${itemData.name}/gallery`}>
+        <div className="">
+          <p className="text-white text-xl fixed ml-4 mt-4 py-1 px-2 rounded-lg font-semibold text-end">
+            {itemData.name}
+          </p>
+          <img
+            src={itemData.imageSrcList[0]}
+            className="h-52 w-[100%] rounded-lg object-cover"
+          />
+        </div>
+      </a>
+    ));
+
   return (
     <div className="min-h-screen w-full items-center justify-center md:px-12 py-24 bg-slate-300">
       <SocialLinks />
@@ -35,6 +51,10 @@ export default function HomePage() {
           </div>
         </div>
       ))}
+      <div>Gallery with images of past events</div>
+      <div className="flex flex-col px-12 py-6 h-auto">
+        <AutoPlay ComponentList={pastTripsCard(pastTripData)} />
+      </div>
 
       <NavCard navList={navList} />
       <WhyUs />

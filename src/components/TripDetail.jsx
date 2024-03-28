@@ -3,19 +3,39 @@ import ootyImg from "../assets/ooty.jpg";
 import { TbRating12Plus } from "react-icons/tb";
 import { FaLanguage } from "react-icons/fa6";
 import { MdOutlineCelebration } from "react-icons/md";
+import { useState } from "react";
+import { LuFlagTriangleRight } from "react-icons/lu";
 
 export default function TripDetail() {
-  const tripDetailsObject1 = {
-    name: "Ooty",
-    image: ootyImg,
-    startingPrice: 4999,
-    price: 5999,
-    tag: "Weekend Trip",
+  const [selectedTab, setSelectedTab] = useState(0);
 
-    datesAvailable: ["March 18-20", "March 20-27"],
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias enim id, voluptate repellat odio deserunt culpa sunt expedita, incidunt iure accusantium minus necessitatibus labore qui aliquid dolorem aspernatur doloribus possimus. Libero, sunt ipsam! Odio libero quo perferendis adipisci suscipit nam asperiores deserunt officia voluptates aperiam. Illo enim sint beatae soluta dolore ipsam consectetur, vero aspernatur repellat rerum, odio hic cumque minima modi ducimus, deleniti quisquam autem sequi quas illum laborum. Vitae quod expedita obcaecati facere. Eveniet debitis deserunt aliquam vero labore, laboriosam, sit commodi praesentium quibusdam fugit, in eius quis repellendus? Deserunt ea adipisci id ad ducimus aliquam velit fugiat harum ullam! Placeat error maxime vero modi iure aperiam, architecto est nihil voluptatem nulla reprehenderit culpa quaerat provident nam corporis, alias sint suscipit harum nisi minima asperiores blanditiis? Laborum omnis laboriosam blanditiis, quaerat voluptas deserunt a dolore quae facilis nam, quia ab sequi? Labore temporibus facere voluptatibus dolorum omnis libero quam, obcaecati quisquam soluta enim laudantium? Similique commodi odio quam non quia, saepe autem consectetur vel quaerat blanditiis molestiae laboriosam magnam doloremque temporibus praesentium deleniti odit vero. Quasi ex iure nisi id, voluptates dolorem nam molestiae temporibus laborum, accusamus dicta maiores harum blanditiis ducimus neque tempore unde a alias sequi?",
+  const handleTabChange = (newValue) => {
+    setSelectedTab(newValue);
   };
+
+  const descriptionPaneWithScroll = (details) => {
+    return (
+      <div className="h-96 overflow-y-auto scroll-ml-4">
+        <p className="text-left text-lg font-serif text-balance ">{details}</p>
+      </div>
+    );
+  };
+
+  const accordianPane = (accordianList) =>
+    accordianList.map((accordian) => (
+      <details key={accordian.topic} className="cursor-pointer mb-2 rounded-lg">
+        <summary className="font-bold">{accordian.topic}</summary>
+        {accordian.detailArray.map((item) => (
+          <div
+            key={item}
+            className="flex flex-row flex-shrink-0 items-center gap-3 "
+          >
+            <LuFlagTriangleRight className="flex-shrink-0" />
+            {item}
+          </div>
+        ))}
+      </details>
+    ));
 
   let tripDetailsObject = JSON.parse(localStorage.getItem("tripDetail"));
   console.log(`trip details => ${tripDetailsObject.data.datesAvailable}`);
@@ -28,17 +48,41 @@ export default function TripDetail() {
         <img
           src={tripDetailsObject.image}
           alt=""
-          className="h-128 rounded-lg shadow-lg shadow-blue-200"
-          srcSet="https://res.cloudinary.com/dwzmsvp7f/image/fetch/q_75,f_auto,w_560/https%3A%2F%2Fmedia.insider.in%2Fimage%2Fupload%2Fc_crop%2Cg_custom%2Fv1710932293%2Fydwc9y4fujxql01q9jlz.jpg 560w, https://res.cloudinary.com/dwzmsvp7f/image/fetch/q_75,f_auto,w_600/https%3A%2F%2Fmedia.insider.in%2Fimage%2Fupload%2Fc_crop%2Cg_custom%2Fv1710932293%2Fydwc9y4fujxql01q9jlz.jpg 600w, https://res.cloudinary.com/dwzmsvp7f/image/fetch/q_75,f_auto,w_750/https%3A%2F%2Fmedia.insider.in%2Fimage%2Fupload%2Fc_crop%2Cg_custom%2Fv1710932293%2Fydwc9y4fujxql01q9jlz.jpg 750w, https://res.cloudinary.com/dwzmsvp7f/image/fetch/q_75,f_auto,w_800/https%3A%2F%2Fmedia.insider.in%2Fimage%2Fupload%2Fc_crop%2Cg_custom%2Fv1710932293%2Fydwc9y4fujxql01q9jlz.jpg 800w, "
+          className="h-96 object-cover rounded-lg shadow-lg shadow-blue-200"
+          // srcSet=""
         />
 
         <div>
-          <h2 className="text-lg font-bold">About</h2>
+          {Object.keys(tripDetailsObject.description).map((tabLabel, index) => (
+            <button
+              key={index}
+              className={`${
+                selectedTab === index
+                  ? "border-blue-500 shadow-md"
+                  : "text-blue-500"
+              } text-black text-md font-bold flex-1 py-2 px-4 border-transparent focus:outline-none uppercase rounded-lg border-b-4`}
+              onClick={() => handleTabChange(index)}
+            >
+              {tabLabel}
+            </button>
+          ))}
           <hr className="w-[60%]" />
-          <p className="text-left font-serif text-balance ">
-            {tripDetailsObject.description}
-          </p>
         </div>
+
+        {Object.values(tripDetailsObject.description).map(
+          (sections, tabIndex) => (
+            <div
+              key={tabIndex}
+              style={{ display: selectedTab === tabIndex ? "block" : "none" }}
+              className="ml-4 mr-10 mt-1"
+            >
+              {Array.isArray(sections)
+                ? // <div>{sections[0]?.day}</div>
+                  accordianPane(sections)
+                : descriptionPaneWithScroll(sections)}
+            </div>
+          )
+        )}
       </div>
 
       <div className="flex flex-col mx-12 mb-12 md:mt-24 md:mr-24 w-[80%] md:w-[30%] h-[50%] px-6 py-4 gap-4">
@@ -47,12 +91,12 @@ export default function TripDetail() {
           <h2 className="text-xl font-bold">{tripDetailsObject.name}</h2>
           <hr />
           <div className="flex flex-row gap-4 text-md font-mono items-center">
-            <FaTag />
+            <FaTag className="flex-shrink-0" />
             <p>{tripDetailsObject.tag}</p>
           </div>
           <div className="flex flex-row gap-4 text-md font-mono items-center">
             {/* small ui defect of icon resizing when array size is big */}
-            <FaCalendar />
+            <FaCalendar className="flex-shrink-0" />
             <p>{tripDetailsObject.datesAvailable.join(" | ")}</p>
           </div>
           <div className="flex flex-row gap-4 text-xl font-mono font-extrabold items-center">
