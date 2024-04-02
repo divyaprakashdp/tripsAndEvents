@@ -1,40 +1,27 @@
 import { FaCalendar, FaTag, FaWallet } from "react-icons/fa";
-import ootyImg from "../assets/ooty.jpg";
 import { TbRating12Plus } from "react-icons/tb";
 import { FaLanguage } from "react-icons/fa6";
 import { MdOutlineCelebration } from "react-icons/md";
-import { useState } from "react";
 import { LuFlagTriangleRight } from "react-icons/lu";
 
 export default function TripDetail() {
-  const [selectedTab, setSelectedTab] = useState(0);
-
-  const handleTabChange = (newValue) => {
-    setSelectedTab(newValue);
-  };
-
-  const descriptionPaneWithScroll = (details) => {
-    return (
-      <div className="h-96 overflow-y-auto scroll-ml-4">
-        <p className="text-left text-lg font-serif text-balance ">{details}</p>
-      </div>
-    );
-  };
-
   const accordianPane = (accordianList) =>
     accordianList.map((accordian) => (
-      <details key={accordian.topic} className="cursor-pointer mb-2 rounded-lg">
-        <summary className="font-bold">{accordian.topic}</summary>
+      <li
+        key={accordian.topic}
+        className="mb-2 rounded-lg decoration-none list-none pl-4"
+      >
+        <ul className="font-bold underline">{accordian.topic}</ul>
         {accordian.detailArray.map((item) => (
           <div
             key={item}
-            className="flex flex-row flex-shrink-0 items-center gap-3 "
+            className="flex flex-row flex-shrink-0 items-center gap-3 pl-4"
           >
             <LuFlagTriangleRight className="flex-shrink-0" />
             {item}
           </div>
         ))}
-      </details>
+      </li>
     ));
 
   let tripDetailsObject = JSON.parse(localStorage.getItem("tripDetail"));
@@ -53,36 +40,34 @@ export default function TripDetail() {
         />
 
         <div>
-          {Object.keys(tripDetailsObject.description).map((tabLabel, index) => (
-            <button
-              key={index}
-              className={`${
-                selectedTab === index
-                  ? "border-blue-500 shadow-md"
-                  : "text-blue-500"
-              } text-black text-md font-bold flex-1 py-2 px-4 border-transparent focus:outline-none uppercase rounded-lg border-b-4`}
-              onClick={() => handleTabChange(index)}
-            >
-              {tabLabel}
-            </button>
-          ))}
-          <hr className="w-[60%]" />
+          <h2 className="border-b-4 border-blue-500 shadow-md text-black text-md font-bold flex-1 py-2 px-4 focus:outline-none uppercase rounded-lg">
+            About
+          </h2>
+          {/* <hr className="w-[60%]" /> */}
+          <p className="text-left font-serif text-balance mt-4 pl-4">
+            {tripDetailsObject.description.about}
+          </p>
         </div>
 
-        {Object.values(tripDetailsObject.description).map(
-          (sections, tabIndex) => (
-            <div
-              key={tabIndex}
-              style={{ display: selectedTab === tabIndex ? "block" : "none" }}
-              className="ml-4 mr-10 mt-1"
-            >
-              {Array.isArray(sections)
-                ? // <div>{sections[0]?.day}</div>
-                  accordianPane(sections)
-                : descriptionPaneWithScroll(sections)}
-            </div>
-          )
-        )}
+        <div>
+          <h2 className="border-b-4 border-blue-500 shadow-md text-black text-md font-bold flex-1 py-2 px-4 focus:outline-none uppercase rounded-lg">
+            Itenarary
+          </h2>
+          {/* <hr className="w-[60%]" /> */}
+          <p className="text-left font-serif text-balance mt-4">
+            {accordianPane(tripDetailsObject.description.itenarary)}
+          </p>
+        </div>
+
+        <div>
+          <h2 className="border-b-4 border-blue-500 shadow-md text-black text-md font-bold flex-1 py-2 px-4 focus:outline-none uppercase rounded-lg">
+            Itenarary
+          </h2>
+          <hr className="w-[60%]" />
+          <p className="text-left font-serif text-balance mt-4">
+            {accordianPane(tripDetailsObject.description.policy)}
+          </p>
+        </div>
       </div>
 
       <div className="flex flex-col mx-12 mb-12 md:mt-24 md:mr-24 w-[80%] md:w-[30%] h-[50%] px-6 py-4 gap-4">
