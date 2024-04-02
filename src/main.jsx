@@ -1,5 +1,11 @@
 import * as ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import "./index.css";
 import Layout from "../src/components/Layout";
 import HomePage from "./components/HomePage";
@@ -15,10 +21,11 @@ import { store } from "./redux/Store";
 import Gallery from "./components/Gallery";
 
 export const ProtectedRoutes = ({ children }) => {
+  const location = useLocation();
   if (localStorage.getItem("user")) {
     return children;
   } else {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" replace state={{ from: location }} />;
   }
 };
 

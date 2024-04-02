@@ -2,14 +2,18 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
+  updateCart,
   incrementQuantity,
   decrementQuantity,
   incrementQuantityFor5plus,
   decrementQuantityFor5plus,
 } from "../redux/tripBookingSlice";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Booking() {
+  const currentRoute = useLocation();
+  console.log(currentRoute);
   // const bookingData = {
   //   name: "manali",
   //   price: 5999,
@@ -31,24 +35,27 @@ export default function Booking() {
 
   const incrementFor5OrLess = (id, item) => {
     console.log("incrementFor5OrLess");
-    dispatch(addToCart(item));
+
     dispatch(incrementQuantity(id));
+    dispatch(addToCart(item));
   };
 
-  const decrementFor5OrLess = (id) => {
+  const decrementFor5OrLess = (id, price) => {
     console.log("decrementFor5OrLess");
     dispatch(decrementQuantity(id));
+    dispatch(updateCart(price));
   };
 
   const incrementFor5OrMore = (id, item) => {
     console.log("incrementFor5OrMore");
-    dispatch(addToCart(item));
     dispatch(incrementQuantityFor5plus(id));
+    dispatch(addToCart(item));
   };
 
-  const decrementFor5OrMore = (id) => {
+  const decrementFor5OrMore = (id, price) => {
     console.log("decrementFor5OrMore");
     dispatch(decrementQuantityFor5plus(id));
+    dispatch(updateCart(price));
   };
 
   const [isBookHidden, setIsBookHidden] = useState(true);
@@ -61,10 +68,7 @@ export default function Booking() {
   }, [tripCartItems]);
 
   useEffect(() => {
-    const bool = !(
-      tripCartItems.countOf5OrLess + tripCartItems.countOf5OrMore >
-      0
-    );
+    const bool = !(tripCartItems.countOf5OrMore > 0);
     setIsBookHidden(bool);
     console.log(
       "disable",
@@ -90,7 +94,7 @@ export default function Booking() {
       </h2>
       <p className="text-lg">{bookingData.datesAvailable.join(" | ")}</p>
 
-      <div className="flex flex-row mx-24 my-12 pb-4 text-center items-center justify-center md:gap-12  border-b-4 rounded-lg text-lg">
+      <div className="flex flex-row mx-24 my-12 pb-4 text-center items-center justify-center md:gap-12  border-b-4 border-blue-500 rounded-lg text-lg shadow-lg shadow-blue-100">
         <div>
           <select
             className="border-2 gap-6 px-2 py-1 rounded-2xl items-center text-center shadow-md"
@@ -115,14 +119,8 @@ export default function Booking() {
                   className="bg-yellow-500 rounded-full p-1"
                   onClick={() => {
                     ageRange === "< 5yrs"
-                      ? decrementFor5OrLess(dateSelected, {
-                          date: dateSelected,
-                          price: bookingData.price,
-                        })
-                      : decrementFor5OrMore(dateSelected, {
-                          date: dateSelected,
-                          price: bookingData.price,
-                        });
+                      ? decrementFor5OrLess(dateSelected, bookingData.price)
+                      : decrementFor5OrMore(dateSelected, bookingData.price);
                   }}
                 >
                   <FaMinus size={10} />
@@ -157,14 +155,14 @@ export default function Booking() {
           </div>
         ))}
 
-        {/* <a href={`/checkout`}> */}
-        <button
-          className={`bg-blue-400 text-white px-4 py-2 rounded-lg hover:scale-110 duration-500 disabled:bg-gray-300`}
-          disabled={isBookHidden}
-        >
-          Book
-        </button>
-        {/* </a> */}
+        <a href="/checkout">
+          <button
+            className={`bg-blue-400 text-white px-4 py-2 rounded-lg hover:scale-110 duration-500 disabled:bg-gray-300`}
+            disabled={isBookHidden}
+          >
+            Book
+          </button>
+        </a>
       </div>
       {bookingData.roomSelection && <div>Rooms</div>}
     </div>

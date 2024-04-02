@@ -27,8 +27,8 @@ export default function HomePage() {
   const pastTripsCard = (list) =>
     list.map((itemData) => (
       <a key={itemData.name} href={`/${itemData.name}/gallery`}>
-        <div className="">
-          <p className="text-white text-xl fixed ml-4 mt-4 py-1 px-2 rounded-lg font-semibold text-end">
+        <div className="gap-4">
+          <p className="text-white text-xl fixed ml-4 mt-4 py-1 px-2 rounded-lg font-semibold text-end ">
             {itemData.name}
           </p>
           <img
@@ -43,6 +43,7 @@ export default function HomePage() {
     <div className="min-h-screen w-full items-center justify-center md:px-12 py-24 bg-slate-300">
       <SocialLinks />
       <HeroCarousel />
+
       {data.map((trip) => (
         <div key={trip.name} className=" items-center justify-start p-12 ">
           <h2 className="text-xl font-semibold ml-12">{trip.name}</h2>
@@ -51,8 +52,8 @@ export default function HomePage() {
           </div>
         </div>
       ))}
-      <div>Gallery with images of past events</div>
-      <div className="flex flex-col px-12 py-6 h-auto">
+
+      <div className="px-12 py-6 h-auto">
         <AutoPlay ComponentList={pastTripsCard(pastTripData)} />
       </div>
 

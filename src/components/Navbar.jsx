@@ -2,8 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import Loader from "./Loader";
 import { toast } from "react-toastify";
+import { UserAuth } from "../context/AuthContext";
 
 export default function Navbar() {
+  const authUser = UserAuth();
+  console.log(authUser.user.uid);
   const [showSignup, setShowSignup] = useState(true);
   const [loading, setLoading] = useState(false);
   const navList = ["Feb Trip", "March Trip", "Good Friday", "Holi"];
@@ -33,22 +36,17 @@ export default function Navbar() {
         </div>
 
         <div className="justify-right mr-12">
-          {user ? (
+          {authUser.user.uid ? (
             <a onClick={logout} className="cursor-pointer">
               Logout
             </a>
           ) : (
             showSignup && (
               <Link to={"/signup"} onClick={() => setShowSignup(false)}>
-                Signup
+                Signup/SignIn
               </Link>
             )
           )}
-          {/* <button onClick={() => setOpenSignin(true)}>Signin/Signup</button> */}
-          {/* <Modal open={openSignin} onClose={() => setOpenSignin(false)}>
-            {<Signup />}
-          </Modal> */}
-          {loading && <Loader />}
         </div>
       </div>
     </>

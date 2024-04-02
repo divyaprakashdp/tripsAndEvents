@@ -12,10 +12,13 @@ export const tripBookingSlice = createSlice({
     addToCart(state, action) {
       state.date = action.payload.date;
       state.totalAmount =
-        action.payload.price *
-        (state.countOf5OrLess + 1 + state.countOf5OrMore);
+        action.payload.price * (state.countOf5OrLess + state.countOf5OrMore);
       // state.countOf5OrLess = action.payload.countOf5OrLess;
       // state.countOf5OrMore = action.payload.countOf5OrMore;
+    },
+    updateCart(state, action) {
+      state.totalAmount =
+        action.payload * (state.countOf5OrLess + state.countOf5OrMore);
     },
     incrementQuantity(state, action) {
       // if (state.date === "" || state.date === action.payload.date) {
@@ -44,6 +47,7 @@ export const tripBookingSlice = createSlice({
 
 export const {
   addToCart,
+  updateCart,
   incrementQuantity,
   decrementQuantity,
   incrementQuantityFor5plus,
