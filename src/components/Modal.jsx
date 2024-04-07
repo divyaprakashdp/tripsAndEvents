@@ -15,7 +15,7 @@ export default function Modal({ open, onClose, children }) {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className={`fixed inset-0 flex justify-center items-center text-center transition-colors text-black z-10
+      className={`fixed inset-0 flex justify-center items-center text-center transition-colors z-10
             ${open ? "visible bg-black/20 " : "hidden"}`}
     >
       <button

@@ -40,7 +40,7 @@ export default function HomePage() {
     ));
 
   return (
-    <div className="min-h-screen w-full items-center justify-center md:px-12 py-24 bg-slate-300">
+    <div className="min-h-screen w-full items-center justify-center md:px-12 py-24">
       <SocialLinks />
       <HeroCarousel />
 
@@ -60,8 +60,6 @@ export default function HomePage() {
       <NavCard navList={navList} />
       <WhyUs />
       <Testimonials />
-
-      <div className="pt-4">Reach out to us </div>
     </div>
   );
 }

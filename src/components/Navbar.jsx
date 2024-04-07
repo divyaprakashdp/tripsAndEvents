@@ -6,7 +6,7 @@ import { UserAuth } from "../context/AuthContext";
 
 export default function Navbar() {
   const authUser = UserAuth();
-  console.log(authUser.user.uid);
+  // console.log(authUser.user.uid);
   const [showSignup, setShowSignup] = useState(true);
   const [loading, setLoading] = useState(false);
   const navList = ["Feb Trip", "March Trip", "Good Friday", "Holi"];
@@ -36,7 +36,7 @@ export default function Navbar() {
         </div>
 
         <div className="justify-right mr-12">
-          {authUser.user.uid ? (
+          {authUser.user?.uid ? (
             <a onClick={logout} className="cursor-pointer">
               Logout
             </a>
