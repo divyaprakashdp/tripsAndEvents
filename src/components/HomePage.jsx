@@ -26,17 +26,19 @@ export default function HomePage() {
 
   const pastTripsCard = (list) =>
     list.map((itemData) => (
-      <a key={itemData.name} href={`/${itemData.name}/gallery`}>
-        <div className="gap-4">
-          <p className="text-white text-xl fixed ml-4 mt-4 py-1 px-2 rounded-lg font-semibold text-end ">
-            {itemData.name}
-          </p>
-          <img
-            src={itemData.imageSrcList[0]}
-            className="h-52 w-[100%] rounded-lg object-cover"
-          />
-        </div>
-      </a>
+      <div key={itemData.name} className="flex flex-col rounded-xl mr-4">
+        <a href={`/${itemData.name}/gallery`}>
+          <div className="gap-6">
+            <p className="text-white text-xl fixed ml-4 mt-4 py-1 px-2 rounded-lg font-semibold text-end ">
+              {itemData.name}
+            </p>
+            <img
+              src={itemData.imageSrcList[0]}
+              className="h-52 w-[90%] rounded-lg object-cover"
+            />
+          </div>
+        </a>
+      </div>
     ));
 
   return (
@@ -53,8 +55,11 @@ export default function HomePage() {
         </div>
       ))}
 
-      <div className="px-12 py-6 h-auto">
-        <AutoPlay ComponentList={pastTripsCard(pastTripData)} />
+      <div className=" items-center p-12 ">
+        <h2 className="text-xl font-semibold ml-12">Past Trips</h2>
+        <div className="flex flex-col px-12 py-6 h-auto gap-4">
+          <AutoPlay ComponentList={pastTripsCard(pastTripData)} />
+        </div>
       </div>
 
       <NavCard navList={navList} />

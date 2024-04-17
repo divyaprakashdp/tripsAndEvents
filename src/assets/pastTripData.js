@@ -53,6 +53,35 @@ const pastTripList = [
       image9,
     ],
   },
+  {
+    name: "Some Beach",
+    imageSrcList: [
+      image8,
+      image1,
+      image2,
+      image3,
+      image4,
+      image5,
+      image6,
+      image7,
+      image8,
+      image9,
+    ],
+  },
+  {
+    name: "some mountain",
+    imageSrcList: [
+      image9,
+      image2,
+      image3,
+      image4,
+      image5,
+      image6,
+      image7,
+      image8,
+      image1,
+    ],
+  },
 ];
 
 export default pastTripList;
