@@ -14,7 +14,7 @@ import Loader from "./Loader";
 
 function Login() {
   const location = useLocation();
-  console.log(location.state);
+  // console.log(location.state);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -75,6 +75,7 @@ function Login() {
         <div className=" flex justify-center mb-3">
           <button
             onClick={signin}
+            // onKeyPress={(e) => (e.keyCode === 13 ? signin : "")}
             className=" bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg"
           >
             Login

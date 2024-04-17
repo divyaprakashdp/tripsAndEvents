@@ -57,7 +57,7 @@ export default function Footer() {
     {
       title: "T&C",
       content: (
-        <div>
+        <div className="bg-slate-900 text-White text-lg z-20 w-[70%] h-[90%] mt-12 object-cover rounded-3xl ">
           <h2 className="font-bold">Terms and Conditions</h2>
           <p>
             Terms & Conditions Full Payment of the trip cost must be made before
@@ -74,7 +74,7 @@ export default function Footer() {
     {
       title: "Cancellation Policy",
       content: (
-        <div>
+        <div className="bg-slate-900 text-White text-lg z-20 w-[70%] h-[90%] mt-12 object-cover rounded-3xl ">
           <h2 className="font-bold">Cancellation Policy</h2>
           <p>
             Terms & Conditions Full Payment of the trip cost must be made before
