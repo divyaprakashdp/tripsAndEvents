@@ -21,7 +21,7 @@ export const AuthContextProvider = ({ children }) => {
     createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const logout = () => {
+  const signout = () => {
     signOut(auth);
   };
 
@@ -35,7 +35,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ signUp, signInWithCredentials, logout, user }}
+      value={{ signUp, signInWithCredentials, signout, user }}
     >
       {children}
     </AuthContext.Provider>

@@ -1,12 +1,21 @@
 // import { Link } from 'react-router-dom'
 // import myContext from '../../context/data/myContext';
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import {
+  Link,
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import Loader from "./Loader";
 
 function Login() {
+  const location = useLocation();
+  // console.log(location.state);
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signInWithCredentials, user } = UserAuth();
@@ -21,8 +30,14 @@ function Login() {
       await signInWithCredentials(email, password);
       localStorage.setItem("user", JSON.stringify(user));
       toast.success("Signin Successful!");
-      window.location.href = "/";
+      if (location.state?.from) {
+        navigate(location.state?.from);
+      } else {
+        navigate("/");
+      }
+      // window.location.href = "/";
       setLoading(false);
+      return <Navigate to="/" state={{ prev: location.pathname }} />;
     } catch (error) {
       toast.error("Sigin Failed");
       setLoading(false);
@@ -60,6 +75,7 @@ function Login() {
         <div className=" flex justify-center mb-3">
           <button
             onClick={signin}
+            // onKeyPress={(e) => (e.keyCode === 13 ? signin : "")}
             className=" bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg"
           >
             Login
